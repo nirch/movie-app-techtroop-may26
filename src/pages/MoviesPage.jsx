@@ -1,22 +1,27 @@
 import Movie from "../components/Movie";
 import "./MoviesPage.css";
+import moviesJson from "../data/movies.json";
+import { useState } from "react";
 
 export default function MoviesPage() {
-  const movie = {
-    name: "Forrest Gump",
-    runtime: 142,
-    year: 1994,
-    plot: "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",
-    genres: ["Drama", "Comedy"],
-    poster:
-      "https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg",
-    imdb: "https://www.imdb.com/title/tt0109830/",
-  };
+  const [movies, setMovies] = useState(moviesJson);
+  const [comedyOnly, setComedyOnly] = useState(false);
+
+  // displayMovies is a computed value from movies + comedyOnly
+  let displayMovies = movies;
+  if (comedyOnly) {
+    displayMovies = movies.filter((movie) => movie.genres.includes("Comedy"));
+  }
+
   return (
     <div className="movies-page">
       <h1>Movies Page</h1>
-      <Movie movie={movie}/>
-      <Movie movie={movie}/>
+      <button onClick={() => setComedyOnly(!comedyOnly)}>
+        {comedyOnly ? "Show All" : "Comedy Only"}
+      </button>
+      {displayMovies.map((movie) => (
+        <Movie key={movie.id} movie={movie} />
+      ))}
     </div>
   );
 }

@@ -3,6 +3,19 @@
   display: flex;
 }
 
+.movie .movie-poster {
+  width: 20%;
+}
+
+.movie .movie-info {
+  padding: 5px;
+  width: 80%;
+}
+
+.movie .movie-poster img{
+  width: 100%;
+}
+
 .movie .genres {
   display: flex;
 }
