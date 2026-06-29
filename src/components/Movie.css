@@ -1,6 +1,13 @@
 
 .movie {
   display: flex;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.movie.selected {
+  border: 2px solid red;
+  /* outline: 2px solid red; */
 }
 
 .movie .movie-poster {

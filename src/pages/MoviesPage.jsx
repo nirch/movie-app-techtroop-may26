@@ -7,6 +7,7 @@ export default function MoviesPage() {
   const [movies, setMovies] = useState(moviesJson);
   const [comedyOnly, setComedyOnly] = useState(false);
   const [filterText, setFilterText] = useState("");
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   // displayMovies is a computed value from movies + comedyOnly
   let displayMovies = movies;
@@ -37,7 +38,13 @@ export default function MoviesPage() {
         </button>
       </div>
       {displayMovies.map((movie) => (
-        <Movie key={movie.id} movie={movie} />
+        <Movie
+          key={movie.id}
+          movie={movie}
+          selected={movie === selectedMovie}
+          onSelected={movie => setSelectedMovie(movie)}
+          // onSelected={setSelectedMovie}
+        />
       ))}
     </div>
   );
