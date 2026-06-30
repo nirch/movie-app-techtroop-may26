@@ -1,10 +1,9 @@
-import { Container } from "@mantine/core";
+import { Container, Grid } from "@mantine/core";
 import SearchBox from "../components/SearchBox";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const hardCodedResults = ["Item1","Item2","Item3"];
-
+const hardCodedResults = ["Item1", "Item2", "Item3"];
 
 export default function ActorsPage() {
   const [actors, setActors] = useState([]);
@@ -23,7 +22,7 @@ export default function ActorsPage() {
     } else {
       setSearchResults([]);
     }
-  }, [searchText])
+  }, [searchText]);
 
   function addActor(index) {
     setActors([...actors, searchResults[index]]);
@@ -37,10 +36,16 @@ export default function ActorsPage() {
         placeholder="Search actors..."
         searchText={searchText}
         onSearchChange={setSearchText}
-        results={searchResults.map(result => result.name)}
+        results={searchResults.map((result) => result.name)}
         onResultClicked={addActor}
       />
-      {actors.map((actor, index) => <div key={index}>{actor.name}</div>)}
+      <Grid>
+        {actors.map((actor) => (
+          <Grid.Col key={actor.id} span={{ base: 12, sm: 6, md: 3 }}>
+            {actor.name}
+          </Grid.Col>
+        ))}
+      </Grid>
     </Container>
   );
 }
