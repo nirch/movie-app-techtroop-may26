@@ -6,6 +6,7 @@ export default function SearchBox({
   searchText,
   onSearchChange,
   results,
+  onResultClicked,
 }) {
   return (
     <Box pos="relative">
@@ -23,7 +24,12 @@ export default function SearchBox({
           w="100%"
         >
           {results.map((result, index) => (
-            <Box key={index} className="result-item" p="xs">
+            <Box
+              key={index}
+              className="result-item"
+              p="xs"
+              onClick={() => onResultClicked(index)}
+            >
               {result}
             </Box>
           ))}

@@ -1,11 +1,28 @@
 import { Container } from "@mantine/core";
 import SearchBox from "../components/SearchBox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const hardCodedResults = ["Item1","Item2","Item3"];
+
 
 export default function ActorsPage() {
+  const [actors, setActors] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
-  const results = ["Item1","Item2","Item3"];
+  useEffect(() => {
+    if (searchText) {
+      setSearchResults(hardCodedResults);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchText])
+
+  function addActor(index) {
+    setActors([...actors, searchResults[index]]);
+    setSearchText("");
+  }
+
   return (
     <Container size="md">
       <h1>Actors Page</h1>
@@ -13,8 +30,10 @@ export default function ActorsPage() {
         placeholder="Search actors..."
         searchText={searchText}
         onSearchChange={setSearchText}
-        results={results}
+        results={searchResults}
+        onResultClicked={addActor}
       />
+      {actors.map((actor, index) => <div key={index}>{actor}</div>)}
     </Container>
   );
 }
