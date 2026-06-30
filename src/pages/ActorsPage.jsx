@@ -2,6 +2,7 @@ import { Container, Grid } from "@mantine/core";
 import SearchBox from "../components/SearchBox";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ActorCard from "../components/ActorCard";
 
 const hardCodedResults = ["Item1", "Item2", "Item3"];
 
@@ -42,7 +43,7 @@ export default function ActorsPage() {
       <Grid>
         {actors.map((actor) => (
           <Grid.Col key={actor.id} span={{ base: 12, sm: 6, md: 3 }}>
-            {actor.name}
+            <ActorCard actor={actor} />
           </Grid.Col>
         ))}
       </Grid>
