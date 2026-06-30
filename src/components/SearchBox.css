@@ -1,0 +1,8 @@
+.results > .result-item {
+  cursor: pointer;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.results > .result-item:hover {
+  background-color: #f8f9fa;
+}
