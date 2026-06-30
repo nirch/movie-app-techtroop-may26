@@ -8,14 +8,20 @@ export default function SearchBox({
   results,
 }) {
   return (
-    <>
+    <Box pos="relative">
       <TextInput
         placeholder={placeholder}
         value={searchText}
         onChange={(e) => onSearchChange(e.target.value)}
       />
       {results && results.length > 0 && (
-        <Paper withBorder shadow="sm" className="results">
+        <Paper
+          withBorder
+          shadow="sm"
+          className="results"
+          pos="absolute"
+          w="100%"
+        >
           {results.map((result, index) => (
             <Box key={index} className="result-item" p="xs">
               {result}
@@ -23,6 +29,6 @@ export default function SearchBox({
           ))}
         </Paper>
       )}
-    </>
+    </Box>
   );
 }
